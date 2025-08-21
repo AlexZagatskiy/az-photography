@@ -12,7 +12,7 @@ import { APP_ROUTES } from "../../app.routes";
   standalone: true
 })
 export class NavigationComponent {
-  @HostBinding('class') hostClasses = 'fixed left-0 top-0 right-0 justify-end items-center flex bg-white/50';
+  @HostBinding('class') hostClasses = 'fixed left-0 top-0 right-0 z-10 justify-end items-center flex bg-white/50';
 
   protected readonly igLink = 'https://www.instagram.com/zagatskiy_alex/';
   protected readonly navLinks = [
