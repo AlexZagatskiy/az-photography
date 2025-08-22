@@ -1,20 +1,23 @@
-<div class=""
-     [style.padding-top]="scrollOffset + 'px'"
-
+<div [class.h-screen]="scrollY() < scrollOffset"
+     [style.margin-bottom]="scrollOffset + 'px'"
 ></div>
 
 <div [style.padding]="bannerPadding()"
      [class.fixed]="scrollY() < scrollOffset"
-     class="inset-0 z-2"
-
->
-  <div [ngClass]="'bg-[url(/img/banner-bg.jpeg)]'"
-       class="h-screen bg-cover flex items-center justify-center">
-    <h1 [style.opacity]="bannerTitleOpacity()"
-        class="text-4xl text-white tracking-wider font-bold underline">
-      AZ PHOTOGRAPHY
-    </h1>
+     class="h-screen inset-0 h-full w-full z-2">
+  <div [style.border-radius]="bannerRadius()"
+       class="h-full w-full overflow-hidden">
+    <img [src]="bannerUrlSmall"
+         [imgSrc]="bannerUrl"
+         class="object-cover object-center w-full h-full"
+         alt=""
+         fetchpriority="high"
+         draggable="false">
   </div>
+  <h1 [style.opacity]="bannerTitleOpacity()"
+      class="absolute top-[50%] left-0 w-full text-center text-4xl text-white tracking-wider font-bold underline">
+    AZ PHOTOGRAPHY
+  </h1>
 </div>
 
 <div class="flex flex-wrap px-4">
@@ -24,4 +27,17 @@
     </div>
   }
 </div>
+
+<!--&lt;!&ndash; This image is above the fold&ndash;&gt;-->
+<!--<picture class="lazy">-->
+<!--  <source srcset="/Assets/Images/1920.png" media="(min-width:1600px)" width="1920" height="1080">-->
+<!--  <source srcset="/Assets/Images/1280.png" media="(min-width:1000.5px)" width="1280" height="720">-->
+<!--  <img src="/Assets/Images/640.png" width="640" height="360" alt="" fetchpriority="high" draggable="false">-->
+<!--</picture>-->
+<!--&lt;!&ndash; This image is below the fold&ndash;&gt;-->
+<!--<picture class="lazy">-->
+<!--  <source srcset="/Assets/Images/1920.png" media="(min-width:1600px)" width="1920" height="1080">-->
+<!--  <source srcset="/Assets/Images/1280.png" media="(min-width:1000.5px)" width="1280" height="720">-->
+<!--  <img src="/Assets/Images/640.png" width="640" height="360" alt="" loading="lazy" decoding="async" draggable="false">-->
+<!--</picture>-->
 

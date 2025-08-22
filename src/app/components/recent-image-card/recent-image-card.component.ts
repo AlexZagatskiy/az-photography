@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Image } from "../../app.models";
+import { AppImage } from "../../app.models";
 
 @Component({
   selector: 'app-recent-image-card',
@@ -9,5 +9,5 @@ import { Image } from "../../app.models";
   standalone: true
 })
 export class RecentImageCardComponent {
-  public image = input.required<Image>()
+  public image = input.required<AppImage>()
 }

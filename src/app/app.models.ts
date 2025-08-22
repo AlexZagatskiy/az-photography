@@ -1,4 +1,4 @@
-export interface Image {
+export interface AppImage {
   publicId: string;
   url: string;
   tags: ImageTag[]

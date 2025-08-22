@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { Image } from "../app.models";
+import { AppImage } from "../app.models";
 import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
@@ -7,8 +7,8 @@ import { HttpClient } from "@angular/common/http";
 export class ImageService {
   private readonly http = inject(HttpClient)
 
-  public getAllImages(): Observable<Image[]> {
-    return this.http.get<Image[]>(`all-images.json`).pipe(
+  public getAllImages(): Observable<AppImage[]> {
+    return this.http.get<AppImage[]>(`all-images.json`).pipe(
       map(images => images.map(image => ({
         ...image,
         url: this.getImageUrlByPublicId(image.publicId)

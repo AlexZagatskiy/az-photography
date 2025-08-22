@@ -1,1 +1,21 @@
-<app-contact-form class="block mt-22"></app-contact-form>
+<div class="h-screen relative w-full pt-22">
+  <img [src]="backgroundUrlSmall"
+       [imgSrc]="backgroundUrl"
+       class="absolute inset-0 object-cover object-center w-full h-full"
+       alt=""
+       fetchpriority="high"
+       draggable="false">
+  <app-contact-form class="block relative"></app-contact-form>
+</div>
+<div class="py-8 px-4 text-white bg-black flex justify-end">
+  <div class="px-8">
+    <h2 class="mb-2">Location</h2>
+    <p>Warsaw, Poland</p>
+  </div>
+  <div class="px-8">
+    <h2 class="mb-2">Contacts</h2>
+    <p>+48572120264</p>
+    <p>alexzagatskiy\&#64;gmail.com</p>
+  </div>
+</div>
+
