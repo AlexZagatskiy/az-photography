@@ -7,15 +7,17 @@
        draggable="false">
   <app-contact-form class="block relative"></app-contact-form>
 </div>
-<div class="py-8 px-4 text-white bg-black flex justify-end">
-  <div class="px-8">
-    <h2 class="mb-2">Location</h2>
-    <p>Warsaw, Poland</p>
-  </div>
-  <div class="px-8">
-    <h2 class="mb-2">Contacts</h2>
-    <p>+48572120264</p>
-    <p>alexzagatskiy\&#64;gmail.com</p>
+<div class="py-8 px-4 text-white bg-black">
+  <div class="container mx-auto md:flex justify-end max-md:text-right">
+    <div class="px-8 max-md:mb-6">
+      <h2 class="mb-2 font-semibold">Location:</h2>
+      <p>Warsaw, Poland</p>
+    </div>
+    <div class="px-8">
+      <h2 class="mb-2 font-semibold">Contacts:</h2>
+      <a href="tel:{{ mobilePhone }}">{{ mobilePhone }}</a><br>
+      <a href="mailto:{{ email }}">{{ email }}</a>
+    </div>
   </div>
 </div>
 

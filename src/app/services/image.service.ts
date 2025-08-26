@@ -16,7 +16,8 @@ export class ImageService {
     )
   }
 
-  private getImageUrlByPublicId(publicId: string): string {
-    return `https://res.cloudinary.com/dix00u7dh/image/upload/v1755721458/${publicId}`
+  public getImageUrlByPublicId(publicId: string, size?: number): string {
+    const width = size ? `/w_${size}` : ''
+    return `https://res.cloudinary.com/dix00u7dh/image/upload${width}/v1755721458/${publicId}`
   }
 }
