@@ -1,27 +1,30 @@
 <div class="container max-md:px-6 mx-auto pt-22 pb-10">
-  <h1 class="font-semibold my-4 text-3xl tracking-wider text-white">Stories in Light</h1>
-  @for (item of items; track item.id) {
-    <div class="md:flex items-center mb-40 "
-         [class.flex-row-reverse]="$odd"
-         [class.md:pr-6]="$even"
-         [class.md:pl-6]="$odd"
-    >
-      <div class="md:w-7/12 shrink-0 border border-solid border-white text-white rounded-xl p-4 md:p-10 bg-white/10">
-        <h2 class="text-xl tracking-wider text-blue-500 font-semibold mb-4">{{ item.title }}</h2>
-        <hr class="my-6 bg-white w-20">
-        <p>{{ item.description }}</p>
-        <button class="mt-6 bg-blue-500 text-white px-4 py-2 rounded-md">Show more</button>
+  @if(items.length) {
+    <h1 class="font-semibold my-4 text-3xl tracking-wider text-white">Stories in Light</h1>
+    @for (item of items; track item.id) {
+      <div class="md:flex items-center mb-40 "
+           [class.flex-row-reverse]="$odd"
+           [class.md:pr-6]="$even"
+           [class.md:pl-6]="$odd"
+      >
+        <div class="md:w-7/12 shrink-0 border border-solid border-white text-white rounded-xl p-4 md:p-10 bg-white/10">
+          <h2 class="text-xl tracking-wider text-blue-500 font-semibold mb-4">{{ item.title }}</h2>
+          <hr class="my-6 bg-white w-20">
+          <p>{{ item.description }}</p>
+          <button class="mt-6 bg-blue-500 text-white px-4 py-2 rounded-md">Show more</button>
+        </div>
+        <div class="md:5/12 grow relative flex flex-wrap mx-4 md:m-0">
+          @for (image of item.examples; track image.publicId) {
+            <img [src]="image.urlSmall"
+                 class="border-6 md:border-10 border-solid border-white cursor-pointer hover:z-5 hover:scale-110 transition-transform"
+                 [ngClass]="previewClassConfigs[$index]"
+                 alt="'photo example for ' {{ image.categories[0] }}">
+          }
+        </div>
       </div>
-      <div class="md:5/12 grow relative flex flex-wrap mx-4 md:m-0">
-        @for (image of item.examples; track image) {
-          <img [src]="image"
-               class="border-6 md:border-10 border-solid border-white cursor-pointer hover:z-5 hover:scale-110 transition-transform"
-               [ngClass]="previewClassConfigs[$index]"
-               alt="">
-        }
-      </div>
-    </div>
+    }
+  } @else {
+    <h1 class="font-semibold my-4 text-3xl tracking-wider text-white">Loading ...</h1>
   }
-
 </div>
 

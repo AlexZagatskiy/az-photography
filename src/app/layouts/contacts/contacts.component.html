@@ -1,23 +1,24 @@
-<div class="h-screen relative w-full pt-22">
+<div class="h-screen relative w-full pt-22 flex flex-col">
   <img [src]="backgroundUrlSmall"
        [imgSrc]="backgroundUrl"
        class="absolute inset-0 object-cover object-center w-full h-full"
        alt=""
        fetchpriority="high"
        draggable="false">
-  <app-contact-form class="block relative"></app-contact-form>
-</div>
-<div class="py-8 px-4 text-white bg-black">
-  <div class="container mx-auto md:flex justify-end max-md:text-right">
-    <div class="px-8 max-md:mb-6">
-      <h2 class="mb-2 font-semibold">Location:</h2>
-      <p>Warsaw, Poland</p>
-    </div>
-    <div class="px-8">
-      <h2 class="mb-2 font-semibold">Contacts:</h2>
-      <a href="tel:{{ mobilePhone }}">{{ mobilePhone }}</a><br>
-      <a href="mailto:{{ email }}">{{ email }}</a>
+  <app-contact-form class="mb-6 block relative"></app-contact-form>
+  <div class="mt-auto py-8 px-4 text-white bg-black relative">
+    <div class="container mx-auto md:flex justify-end max-md:text-right">
+      <div class="px-8 max-md:mb-6">
+        <h2 class="mb-2 font-semibold">Location:</h2>
+        <p>Warsaw, Poland</p>
+      </div>
+      <div class="px-8">
+        <h2 class="mb-2 font-semibold">Contacts:</h2>
+        <a href="tel:{{ mobilePhone }}">{{ mobilePhone }}</a><br>
+        <a href="mailto:{{ email }}">{{ email }}</a>
+      </div>
     </div>
   </div>
 </div>
+
 

@@ -20,24 +20,17 @@
   </h1>
 </div>
 
-<div class="flex flex-wrap px-4">
-  @for (image of recentImages(); track image.publicId) {
-    <div class="md:w-6/12 p-3">
-      <app-recent-image-card class="block rounded-xl overflow-hidden" [image]="image"></app-recent-image-card>
-    </div>
-  }
-</div>
+<div class="flex flex-wrap px-4 container mx-auto max-md:px-6">
+  <div class="md:w-6/12 px-3">
+    @for (image of recentImagesLeft(); track image.publicId) {
+      <app-recent-image-card class="mb-6 block rounded-xl overflow-hidden" [image]="image"></app-recent-image-card>
+    }
+  </div>
+  <div class="md:w-6/12 px-3">
+    @for (image of recentImagesRight(); track image.publicId) {
+      <app-recent-image-card class="mb-6 block rounded-xl overflow-hidden" [image]="image"></app-recent-image-card>
+    }
+  </div>
 
-<!--&lt;!&ndash; This image is above the fold&ndash;&gt;-->
-<!--<picture class="lazy">-->
-<!--  <source srcset="/Assets/Images/1920.png" media="(min-width:1600px)" width="1920" height="1080">-->
-<!--  <source srcset="/Assets/Images/1280.png" media="(min-width:1000.5px)" width="1280" height="720">-->
-<!--  <img src="/Assets/Images/640.png" width="640" height="360" alt="" fetchpriority="high" draggable="false">-->
-<!--</picture>-->
-<!--&lt;!&ndash; This image is below the fold&ndash;&gt;-->
-<!--<picture class="lazy">-->
-<!--  <source srcset="/Assets/Images/1920.png" media="(min-width:1600px)" width="1920" height="1080">-->
-<!--  <source srcset="/Assets/Images/1280.png" media="(min-width:1000.5px)" width="1280" height="720">-->
-<!--  <img src="/Assets/Images/640.png" width="640" height="360" alt="" loading="lazy" decoding="async" draggable="false">-->
-<!--</picture>-->
+</div>
 

@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
   protected readonly bannerBgUrl = '/img/banner-bg.jpeg'
 
 
-  protected readonly recentImages = signal<AppImage[]>([])
+  protected readonly recentImagesLeft = signal<AppImage[]>([])
+  protected readonly recentImagesRight = signal<AppImage[]>([])
   protected readonly scrollY = signal<number>(0)
   protected readonly scrollOffset = 200;
 
@@ -53,18 +54,16 @@ export class HomeComponent implements OnInit {
   })
 
   bannerUrl = 'https://res.cloudinary.com/dix00u7dh/image/upload/v1755721458/E23CFB39-7087-4E85-8338-E5EBF8BB4820_1_201_a_tjpcso'
-  bannerUrlMedium = 'https://res.cloudinary.com/dix00u7dh/image/upload/w_1000/v1755721458/E23CFB39-7087-4E85-8338-E5EBF8BB4820_1_201_a_tjpcso'
-  // bannerUrlMedium = 'https://res.cloudinary.com/dix00u7dh/image/upload/w_1000/v1755721458/3FB6A3AC-E23F-4B42-AF51-95334302860E_1_201_a_aeiqt7'
   bannerUrlSmall = 'https://res.cloudinary.com/dix00u7dh/image/upload/w_600/v1755721458/E23CFB39-7087-4E85-8338-E5EBF8BB4820_1_201_a_tjpcso'
-  // bannerUrlSmall = 'https://res.cloudinary.com/dix00u7dh/image/upload/w_600/v1755721458/3FB6A3AC-E23F-4B42-AF51-95334302860E_1_201_a_aeiqt7'
-  bannerUrlDynamic = this.bannerUrlSmall;
-
 
   ngOnInit() {
     this.imageService.getAllImages().pipe(
       takeUntilDestroyed(this.destroyRef)
-    ).subscribe(images => {
-      this.recentImages.set(images);
+    ).subscribe(imageList => {
+      const mid = Math.ceil(imageList.length / 2);
+      this.imageService.shuffleArray(imageList);
+      this.recentImagesLeft.set(imageList.slice(0, mid));
+      this.recentImagesRight.set(imageList.slice(mid));
     })
   }
 }

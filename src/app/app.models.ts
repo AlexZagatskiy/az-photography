@@ -1,12 +1,21 @@
 export interface AppImage {
   publicId: string;
-  url: string;
-  tags: ImageTag[]
+  urlOriginal: string;
+  urlSmall: string;
+  categories: PhotoCategory[]
 }
 
-export enum ImageTag {
-  '',
-  'nature',
-  'landscape',
-  'moto'
+export interface GalleryItem {
+  id: PhotoCategory;
+  title: string;
+  description: string;
+  examples: AppImage[]
+}
+
+export enum PhotoCategory {
+  'PORTRAITS' = 'portraits',
+  'NATURE' = 'nature',
+  'INTERIOR_ARCHITECTURE' = 'interiorArchitecture',
+  'AUTOMOTIVE' = 'automotive',
+  'CREATIVE_VISION' = 'creativeVision',
 }
