@@ -20,7 +20,7 @@
 
 export default async (req, context) => {
   const { city } = context.params;
-  console.log('sending email:', context.body, city);
+  console.log('sending email:', req.body, city);
 
   return new Response(`You're visiting ${city}!`);
 };
