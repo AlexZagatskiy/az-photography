@@ -19,3 +19,6 @@ export enum PhotoCategory {
   'AUTOMOTIVE' = 'automotive',
   'CREATIVE_VISION' = 'creativeVision',
 }
+
+export const MAX_INPUT_TEXT_LENGTH = 40;
+export const MAX_TEXTAREA_LENGTH = 200;
