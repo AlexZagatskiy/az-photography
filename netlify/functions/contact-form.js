@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
 };
 
 export const config = {
-  path: "/contact-form/:city"
+  path: "/contact-form"
 };
 
 async function readStream(readableStream) {
