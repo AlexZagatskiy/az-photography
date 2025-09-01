@@ -18,13 +18,36 @@
 //   });
 // }
 
-export default async (req, context) => {
-  const { city } = context.params;
-  console.log('sending email:', req.body, city);
+// export default async (req, context) => {
+//   const { city } = context.params;
+//   console.log('sending email:', req.body, city);
+//
+//   return new Response(`You're visiting ${city}!`);
+// };
 
-  return new Response(`You're visiting ${city}!`);
+exports.handler = async (event, context) => {
+  console.log('Raw event body:', event.body); // This is already a string
+  const data = JSON.parse(event.body);
+  console.log('Parsed data:', data);
 };
 
-export const config = {
-  path: "/contact-form"
-};
+// export const config = {
+//   path: "/contact-form"
+// };
+
+async function readStream(readableStream) {
+  const reader = readableStream.getReader();
+  const decoder = new TextDecoder();
+  let result = '';
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      result += decoder.decode(value, { stream: true });
+    }
+    return result;
+  } finally {
+    reader.releaseLock();
+  }
+}
