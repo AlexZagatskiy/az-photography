@@ -34,8 +34,8 @@ exports.handler = async (event, context) => {
   console.log('Parsed data:', data);
 };
 
-export const config = {
-  path: "/contact-form"
+exports.config = {
+  path: "/contact-form/:city"
 };
 
 async function readStream(readableStream) {
