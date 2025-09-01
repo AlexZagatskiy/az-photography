@@ -11,6 +11,7 @@ import { finalize } from "rxjs";
     ContactFormComponent,
     ImageSrcDirective
   ],
+  providers: [ContactApiService],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
   standalone: true
