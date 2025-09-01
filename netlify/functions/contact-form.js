@@ -26,14 +26,17 @@
 // };
 
 exports.handler = async (event, context) => {
+   const { city } = context.params;
+
   console.log('Raw event body:', event.body); // This is already a string
+  console.log('param-1:', city);
   const data = JSON.parse(event.body);
   console.log('Parsed data:', data);
 };
 
-// export const config = {
-//   path: "/contact-form"
-// };
+export const config = {
+  path: "/contact-form/:city"
+};
 
 async function readStream(readableStream) {
   const reader = readableStream.getReader();
