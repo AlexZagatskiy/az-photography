@@ -25,10 +25,15 @@
 //   return new Response(`You're visiting ${city}!`);
 // };
 
-exports.handler = async (event, context) => {
-  console.log('Raw event body:', event.body); // This is already a string
-  const data = JSON.parse(event.body);
+// exports.handler = async (request, context) => {
+export default async (request, context) => {
+  const formValue = await request.json();
+  const formValueText = await request.text();
+  console.log('request json:', formValue); // This is already a string
+  console.log('request text:', formValueText); // This is already a string
+  const data = JSON.parse(request.body);
   console.log('Parsed data:', data);
+  return new Response('Ok!!', { status: 200 });
 };
 
 async function readStream(readableStream) {
@@ -38,9 +43,9 @@ async function readStream(readableStream) {
 
   try {
     while (true) {
-      const { done, value } = await reader.read();
+      const {done, value} = await reader.read();
       if (done) break;
-      result += decoder.decode(value, { stream: true });
+      result += decoder.decode(value, {stream: true});
     }
     return result;
   } finally {
