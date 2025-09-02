@@ -19,14 +19,15 @@
 // }
 
 export default async (req, context) => {
-  const { city, country } = context.params;
+  const formValue = await req.json();
+  console.log('formValue', formValue)
 
-  return new Response(`You're visiting ${city} in ${country}!`);
+  return new Response(`You're visiting }!`);
 };
 
-export const config = {
-  path: "/contact-form/:city"
-};
+// export const config = {
+//   path: "/contact-form/:city"
+// };
 
 // exports.handler = async (request, context) => {
 // export default async (request, context) => {
