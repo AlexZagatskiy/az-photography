@@ -8,7 +8,6 @@ export class ContactApiService {
 
   public sendEmail(data: Record<string, any>): Observable<any> {
     const url = `/.netlify/functions/contact-form`;
-    // const url = `https://az-photography.netlify.app/contact-form/warsaw`;
     return this.http.post(url, JSON.stringify(data));
   }
 
