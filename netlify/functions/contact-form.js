@@ -20,7 +20,7 @@
 
 export default async (req, context) => {
   const formValue = await req.json();
-  console.log('formValue', formValue)
+  console.log('formValue', formValue.name)
 
   return new Response(`You're visiting }!`);
 };
