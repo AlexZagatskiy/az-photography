@@ -25,21 +25,9 @@ export class ContactFormComponent {
   protected onFormSubmit(e: MouseEvent): void {
     e.preventDefault();
     e.stopPropagation();
-    if (this.form.invalid) {
+    if (this.form.invalid || this.form.value.title) { // title is a hidden input, should be empty
       return;
     }
     this.sendFormData.emit(this.form.value);
-  }
-
-  private createFormData(): FormData {
-    const formData = new FormData();
-    const formValue = this.form.value;
-    Object.keys(formValue).forEach(key => {
-      const value = (formValue as Record<string, string>)[key];
-      if (value) {
-        formData.append(key, value);
-      }
-    });
-    return formData;
   }
 }
