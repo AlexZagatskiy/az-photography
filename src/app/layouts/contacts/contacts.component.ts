@@ -1,9 +1,10 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { ContactFormComponent } from "../../components/contact-form/contact-form.component";
 import { ImageSrcDirective } from "../../directives/imageSrc";
 import { ContactApiService } from "../../services/contact-api.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { finalize } from "rxjs";
+import { catchError } from "rxjs";
+import { FormSubmitStatus } from "../../app.models";
 
 @Component({
   selector: 'app-contacts',
@@ -25,18 +26,28 @@ export class ContactsComponent {
   protected readonly contactApiService = inject(ContactApiService);
   protected readonly destroyRef = inject(DestroyRef);
 
-  protected readonly isFormSubmitting = signal(false);
+  protected readonly formSubmitStatus = signal<FormSubmitStatus>(FormSubmitStatus.IDLE);
+
+  protected readonly feedbackMessage = computed<string | null>(() => {
+    return this.formSubmitStatus() === FormSubmitStatus.SUCCESS ?
+      'Got it! Your form has been submitted successfully.' : this.formSubmitStatus() === FormSubmitStatus.ERROR ?
+        'Oops! There was an error submitting your form.' : null;
+  });
 
   protected sendFormData(formValue: Record<string, any>) {
-    console.log('submit', formValue)
-    this.isFormSubmitting.set(true);
+    this.formSubmitStatus.set(FormSubmitStatus.PENDING);
+
     this.contactApiService.sendEmail(formValue).pipe(
       takeUntilDestroyed(this.destroyRef),
-      finalize(() => {
-        this.isFormSubmitting.set(false);
+      catchError(error => {
+        this.formSubmitStatus.set(FormSubmitStatus.ERROR);
+        setTimeout(() => {
+          this.formSubmitStatus.set(FormSubmitStatus.IDLE);
+        }, 3000);
+        throw new Error(error);
       })
     ).subscribe(resp => {
-      console.log('response', resp);
+      this.formSubmitStatus.set(FormSubmitStatus.SUCCESS);
     })
   }
 }

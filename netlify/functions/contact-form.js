@@ -20,8 +20,6 @@ async function sendEmail(data) {
 
 export default async (req, context) => {
   const formValue = await req.json();
-  console.log('env GMAIL_USER', process.env.GMAIL_USER)
-  console.log('env GMAIL_APP_PASSWORD', process.env.GMAIL_APP_PASSWORD)
   await sendEmail(formValue);
   return new Response(`Ok`);
 };
