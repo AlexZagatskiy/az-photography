@@ -19,8 +19,18 @@ async function sendEmail(data) {
 }
 
 export default async (req, context) => {
-  const formValue = await req.json();
-  await sendEmail(formValue);
-  return new Response(`Ok`);
+  try {
+    const formValue = await req.json();
+    await sendEmail(formValue);
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 };
 
