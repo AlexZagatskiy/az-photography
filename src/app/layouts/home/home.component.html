@@ -20,17 +20,13 @@
   </h1>
 </div>
 
-<div class="flex flex-wrap px-4 container mx-auto max-md:px-6">
-  <div class="md:w-6/12 px-3">
-    @for (image of recentImagesLeft(); track image.publicId) {
-      <app-recent-image-card class="mb-6 block rounded-xl overflow-hidden" [image]="image"></app-recent-image-card>
-    }
-  </div>
-  <div class="md:w-6/12 px-3">
-    @for (image of recentImagesRight(); track image.publicId) {
-      <app-recent-image-card class="mb-6 block rounded-xl overflow-hidden" [image]="image"></app-recent-image-card>
-    }
-  </div>
-
+<div class="flex px-4 relative">
+  @for (imageGroup of recentImages(); track $index) {
+    <div class="px-3">
+      @for (image of imageGroup; track image.publicId) {
+        <app-recent-image-card [image]="image" class="mb-6"></app-recent-image-card>
+      }
+    </div>
+  }
+  <div class="absolute left-0 right-0 bottom-0 h-34 bg-linear-to-t from-black from-60% "></div>
 </div>
-

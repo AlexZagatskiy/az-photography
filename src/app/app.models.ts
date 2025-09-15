@@ -2,7 +2,10 @@ export interface AppImage {
   publicId: string;
   urlOriginal: string;
   urlSmall: string;
-  categories: PhotoCategory[]
+  categories: PhotoCategory[];
+}
+export interface AppImageMeasured extends AppImage {
+  height: number;
 }
 
 export interface GalleryItem {
