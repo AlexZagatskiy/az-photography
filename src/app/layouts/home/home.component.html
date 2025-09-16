@@ -28,5 +28,27 @@
       }
     </div>
   }
-  <div class="absolute left-0 right-0 bottom-0 h-34 bg-linear-to-t from-black from-60% "></div>
 </div>
+
+<section [style.background-image]="'url(' + aboutBgUrlSmall + ')'"
+         [style.background-position]="'50% '+ aboutBgYOffset()"
+         class="pb-20 pt-30 bg-fixed bg-cover relative">
+  <div class="absolute left-0 right-0 top-0 h-20 bg-linear-to-b from-black"></div>
+  <div class="md:flex max-md:text-center items-start bg-black rounded-2xl max-w-4xl w-[80vw] mx-auto p-10">
+    <img [src]="aboutImgUrlSmall" alt="" class="rounded-xl w-8/12 md:w-4/12 inline-block max-md:mb-8">
+      @for(langKey of supportedLanguages; track langKey) {
+        <p [innerHTML]="aboutText[langKey]"
+           [lang]="langKey"
+           [class.hidden]="langKey !== selectedLanguage()"
+           class="text-white text-justify text-base/7 md:ml-8"></p>
+      }
+  </div>
+<!--  TODO: update links-->
+<!--  &lt;!&ndash; SEO hints for search engines &ndash;&gt;-->
+<!--  <link rel="alternate" hreflang="uk" href="https://twoj-sajt.pl/ua/about" />-->
+<!--  <link rel="alternate" hreflang="en" href="https://twoj-sajt.pl/en/about" />-->
+<!--  <link rel="alternate" hreflang="pl" href="https://twoj-sajt.pl/pl/about" />-->
+</section>
+
+
+

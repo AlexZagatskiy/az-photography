@@ -11,20 +11,6 @@
     [feedbackMessage]="feedbackMessage()"
     (sendFormData)="sendFormData($event)"
     class="mb-6 block relative"></app-contact-form>
-
-  <div class="mt-auto py-8 px-4 text-white bg-black relative">
-    <div class="container mx-auto md:flex justify-end max-md:text-right">
-      <div class="px-8 max-md:mb-6">
-        <h2 class="mb-2 font-semibold">Location:</h2>
-        <p>Warsaw, Poland</p>
-      </div>
-      <div class="px-8">
-        <h2 class="mb-2 font-semibold">Contacts:</h2>
-        <a href="tel:{{ mobilePhone }}">{{ mobilePhone }}</a><br>
-        <a href="mailto:{{ email }}">{{ email }}</a>
-      </div>
-    </div>
-  </div>
 </div>
 
 
