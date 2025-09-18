@@ -18,7 +18,7 @@
     @for (lang of languageOptions(); track lang) {
       <div
         class="flex gap-2 items-center p-2 pr-3 cursor-pointer"
-        [ngClass]="lang.code === selectedLanguage() ? 'bg-blue-600 text-white' : 'bg-white text-black'"
+        [ngClass]="lang.code === selectedLanguage() ? 'bg-blue-400 text-white' : 'bg-white text-black'"
         (click)="onLanguageChange(lang.code)"
       >
         <div class="w-5" [innerHTML]="lang.flag"></div>

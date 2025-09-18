@@ -8,6 +8,6 @@ import { Component, HostBinding } from '@angular/core';
   standalone: true
 })
 export class FooterComponent {
-  @HostBinding('class') hostClasses = 'block mt-auto py-8 px-4 text-white bg-black relative';
+  @HostBinding('class') hostClasses = 'block mt-auto py-8 text-white bg-black relative';
   protected readonly email = 'alexzagatskiy@gmail.com';
 }

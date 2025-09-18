@@ -47,19 +47,12 @@ export class LanguageSelectorComponent {
         code: Language.EN,
         label: 'English',
         ariaLabel: 'Select English',
-        flag: this.sanitizer.bypassSecurityTrustHtml(`<svg viewBox="0 0 640 480" class="w-full h-full">
-          <defs><clipPath id="a"><path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"/></clipPath></defs>
-          <g clip-path="url(#a)" transform="translate(80) scale(.94)">
-            <g stroke-width="1pt">
-              <path fill="#012169" d="M-256 0H768v512H-256z"/>
-              <path fill="#fff" d="m-256 0 512 512m0-512L-256 512"/>
-              <path fill="#c8102e" d="m-256 0 512 512M768 0L-256 512" stroke-width=".7"/>
-              <path fill="#fff" d="M-256 213.3h1024V298.7H-256z"/>
-              <path fill="#c8102e" d="M-256 240h1024v32H-256z"/>
-              <path fill="#fff" d="M213.3-256v1024H298.7V-256z"/>
-              <path fill="#c8102e" d="M240-256v1024h32V-256z"/>
-            </g>
-          </g>
+        flag: this.sanitizer.bypassSecurityTrustHtml(`<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
+          <path fill="#012169" d="M0 0h640v480H0z"/>
+          <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"/>
+          <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"/>
+          <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"/>
+          <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"/>
         </svg>`)
       },
       [Language.PL]: {
@@ -79,8 +72,8 @@ export class LanguageSelectorComponent {
         ariaLabel: 'Оберіть українську мову',
         flag: this.sanitizer.bypassSecurityTrustHtml(`<svg viewBox="0 0 640 480" class="w-full h-full">
           <g fill-rule="evenodd" stroke-width="1pt">
-            <path fill="#005bbb" d="M0 0h640v480H0z"/>
-            <path fill="#ffd500" d="M0 0h640v240H0z"/>
+            <path fill="#ffd500" d="M0 0h640v480H0z"/>
+            <path fill="#005bbb" d="M0 0h640v240H0z"/>
           </g>
         </svg>`)
       }
