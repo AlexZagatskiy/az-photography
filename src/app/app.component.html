@@ -1,3 +1,7 @@
-<app-navigation></app-navigation>
-<router-outlet />
+<app-navigation
+  [selectedLanguage]="languageService.selectedLanguage()"
+  [supportedLanguages]="languageService.supportedLanguages"
+  (languageChanged)="languageService.setLanguage($event)"
+></app-navigation>
+<router-outlet/>
 <app-footer></app-footer>

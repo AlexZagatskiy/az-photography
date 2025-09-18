@@ -9,7 +9,6 @@ import {
   OnInit,
   signal
 } from '@angular/core';
-import { NgClass } from "@angular/common";
 import { ImageService } from "../../services/image.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { RecentImageCardComponent } from "../../components/recent-image-card/recent-image-card.component";
@@ -22,10 +21,10 @@ import {
   forkJoin,
   fromEvent, map,
   startWith,
-  Subject,
   switchMap
 } from "rxjs";
 import { shuffleArray } from "../../utils/array/array.utils";
+import { LanguageService } from "../../services/language.service";
 
 @Component({
   selector: 'app-home',
@@ -88,15 +87,18 @@ export class HomeComponent implements OnInit {
     [Language.EN]: `I am a web developer by profession, but photography has been with me since my youth — I started with film cameras, never imagining the possibilities that modern digital photography would bring. After a long break, I returned to photography in adult life, and now it is my passion and a way to see the world differently.</br>
     For me, photography is a hobby that has grown into a true passion. I am most inspired by shooting cars and motorcycles, as well as portrait photography, landscapes, and architecture. I enjoy experimenting with light and trying to capture the atmosphere of each moment.</br>
     If my vision speaks to you, I will be glad to connect, exchange ideas, or discuss possible cooperation. I am based in Warsaw, but always open to new contacts. You can also follow me on <a href="${this.igLink}">Instagram</a>, where I share my latest work.`,
-    [Language.PL]: `    Z zawodu jestem programistą stron internetowych, ale fotografia towarzyszy mi od młodości — zaczynałem od aparatów analogowych, nie wyobrażając sobie wtedy, jakie możliwości przyniesie współczesna fotografia cyfrowa. Po dłuższej przerwie wróciłem do zdjęć już w dorosłym życiu i dziś to moja pasja oraz sposób patrzenia na świat w wyjątkowy sposób.</br>
+    [Language.PL]: `Z zawodu jestem programistą stron internetowych, ale fotografia towarzyszy mi od młodości — zaczynałem od aparatów analogowych, nie wyobrażając sobie wtedy, jakie możliwości przyniesie współczesna fotografia cyfrowa. Po dłuższej przerwie wróciłem do zdjęć już w dorosłym życiu i dziś to moja pasja oraz sposób patrzenia na świat w wyjątkowy sposób.</br>
     Fotografia jest dla mnie hobby, które stało się prawdziwą pasją. Najbardziej inspiruje mnie fotografowanie samochodów i motocykli, a także portretów, krajobrazów i architektury. Lubię eksperymentować ze światłem i starać się uchwycić atmosferę każdej chwili.</br>
     Jeśli moje spojrzenie na fotografię jest Ci bliskie, chętnie nawiążę kontakt, porozmawiam o pomysłach lub możliwej współpracy. Mieszkam w Warszawie, ale zawsze jestem otwarty na nowe znajomości. Zapraszam także do obserwowania mojego <a href="${this.igLink}">Instagrama</a>, gdzie publikuję najnowsze zdjęcia.`,
     [Language.UK]: `Я веброзробник за професією, але фотографія супроводжує мене з юності — перші кадри я знімав ще на плівку, навіть не уявляючи, які можливості з’являться з розвитком сучасних цифрових камер. Після перерви я повернувся до фото вже у дорослому житті, і тепер це моє натхнення та спосіб бачити світ по-особливому.</br>
     Для мене фотографія — це хобі, яке стало справжньою пристрастю. Найбільше мене захоплює зйомка автомобілів і мотоциклів, а також портретна фотографія, пейзажі та архітектура. Я люблю експериментувати зі світлом і намагатися передати атмосферу моменту у кожному кадрі.</br>
     Якщо вам близьке моє бачення, буду радий спілкуванню, обговоренню ідей чи можливої співпраці. Я знаходжусь у Варшаві, але завжди відкритий до нових контактів. Також запрошую приєднуватися до мого <a href="${this.igLink}">Instagram</a>, де з’являються найсвіжіші роботи.`,
   }
-  protected readonly supportedLanguages = [Language.EN, Language.PL, Language.UK]
-  protected readonly selectedLanguage = signal(Language.EN);
+
+  protected readonly languageService = inject(LanguageService);
+
+  protected readonly supportedLanguages = this.languageService.supportedLanguages;
+  protected readonly selectedLanguage = this.languageService.selectedLanguage;
 
   constructor() {
     afterNextRender(() => {
