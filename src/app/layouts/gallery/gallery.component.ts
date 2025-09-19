@@ -1,4 +1,4 @@
-import { Component, DestroyRef, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, HostBinding, inject } from '@angular/core';
 import { ImageService } from "../../services/image.service";
 import { NgClass } from "@angular/common";
 import { AppImage, GalleryItem, PhotoCategory } from "../../app.models";
@@ -12,7 +12,8 @@ import { forkJoin } from "rxjs";
   ],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent {
   private readonly imageService = inject(ImageService);

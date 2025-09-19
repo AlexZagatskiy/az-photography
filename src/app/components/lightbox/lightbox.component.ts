@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-commercial',
+  selector: 'app-lightbox',
   imports: [],
-  templateUrl: './commercial.component.html',
-  styleUrl: './commercial.component.scss',
+  templateUrl: './lightbox.component.html',
+  styleUrl: './lightbox.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommercialComponent {
+export class LightboxComponent {
 
 }

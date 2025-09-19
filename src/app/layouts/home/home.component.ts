@@ -1,5 +1,5 @@
 import {
-  afterNextRender,
+  afterNextRender, ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -34,7 +34,8 @@ import { LanguageService } from "../../services/language.service";
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);

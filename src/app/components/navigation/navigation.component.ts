@@ -1,4 +1,4 @@
-import { Component, HostBinding, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
 import { RouterLink, ROUTES } from "@angular/router";
 import { APP_ROUTES } from "../../app.routes";
 import { LanguageSelectorComponent } from "../language-selector/language-selector.component";
@@ -12,7 +12,8 @@ import { Language } from "../../app.models";
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
   @HostBinding('class') hostClasses = 'fixed left-0 top-0 right-0 z-10 bg-white/40 backdrop-blur-md';

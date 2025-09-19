@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FormSubmitStatus, MAX_INPUT_TEXT_LENGTH, MAX_TEXTAREA_LENGTH } from "../../app.models";
 
@@ -9,7 +9,8 @@ import { FormSubmitStatus, MAX_INPUT_TEXT_LENGTH, MAX_TEXTAREA_LENGTH } from "..
   ],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
   public readonly formSubmitStatus = input<FormSubmitStatus>();

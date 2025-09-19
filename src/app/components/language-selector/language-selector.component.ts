@@ -1,4 +1,14 @@
-import { Component, computed, ElementRef, inject, input, output, signal, viewChild } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild
+} from "@angular/core";
 import { Language } from "../../app.models";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { NgClass } from "@angular/common";
@@ -17,6 +27,7 @@ interface LanguageOption {
     NgClass
   ],
   templateUrl: './language-selector.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSelectorComponent {
   protected sanitizer = inject(DomSanitizer);

@@ -1,4 +1,4 @@
-import { Component, HostBinding, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
 import { AppImage  } from "../../app.models";
 
 @Component({
@@ -7,7 +7,8 @@ import { AppImage  } from "../../app.models";
   ],
   templateUrl: './recent-image-card.component.html',
   styleUrl: './recent-image-card.component.scss',
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecentImageCardComponent {
   @HostBinding('class') hostClasses = 'block rounded-xl overflow-hidden';
