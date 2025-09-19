@@ -6,7 +6,6 @@ import {
   HostBinding,
   HostListener,
   inject,
-  OnInit,
   signal
 } from '@angular/core';
 import { ImageService } from "../../services/image.service";
@@ -21,10 +20,11 @@ import {
   forkJoin,
   fromEvent, map,
   startWith,
-  switchMap
+  switchMap, tap
 } from "rxjs";
 import { shuffleArray } from "../../utils/array/array.utils";
 import { LanguageService } from "../../services/language.service";
+import { LightboxService } from "../../services/lightbox.service";
 
 @Component({
   selector: 'app-home',
@@ -37,11 +37,12 @@ import { LanguageService } from "../../services/language.service";
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly imageService = inject(ImageService);
+export class HomeComponent {
   @HostBinding('class') hostClasses = 'block bg-black';
 
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly imageService = inject(ImageService);
+  private readonly lightboxService = inject(LightboxService);
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event) {
@@ -105,8 +106,11 @@ export class HomeComponent implements OnInit {
     afterNextRender(() => {
       combineLatest([
         this.imageService.getAllImages(this.previewWidth).pipe(
+          tap(list => {
+            this.lightboxService.setImageList(list);
+          }),
           switchMap(images => {
-            return forkJoin(images.map(img => this.imageService.loadImageDimensions$(img)))
+            return forkJoin(images.map(img => this.imageService.loadImageDimensions$(img)));
           })
         ),
         fromEvent(window, 'resize').pipe(
@@ -123,10 +127,6 @@ export class HomeComponent implements OnInit {
         this.recentImages.set(grouped);
       })
     });
-  }
-
-  ngOnInit() {
-
   }
 
   private balanceImagesByHeight(images: AppImageMeasured[], columnCount: number): AppImageMeasured[][] {
@@ -151,5 +151,9 @@ export class HomeComponent implements OnInit {
       shuffleArray(col.items);
       return col.items;
     });
+  }
+
+  protected showInLightBox(image: AppImage): void {
+    this.lightboxService.setActiveImage(image);
   }
 }

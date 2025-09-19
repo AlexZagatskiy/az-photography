@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, HostBinding, inject, signal } from '@angular/core';
 import { ImageService } from "../../services/image.service";
 import { NgClass } from "@angular/common";
 import { AppImage, GalleryItem, PhotoCategory } from "../../app.models";
@@ -28,7 +28,7 @@ export class GalleryComponent {
     'w-8/12 z-3 absolute -right-4 -bottom-20',
   ];
 
-  protected readonly items: GalleryItem[] = [];
+  protected readonly items = signal<GalleryItem[]>([]);
 
   private readonly visibleCategories = [
     PhotoCategory.AUTOMOTIVE,
@@ -57,26 +57,18 @@ export class GalleryComponent {
     this.loadImages();
   }
 
-  private loadImagesOld(): void {
-    this.visibleCategories.forEach(category => {
-      this.imageService.getImageUrlsByCategory(category, 4, 600).pipe(
-        takeUntilDestroyed(this.destroyRef)
-      ).subscribe(imageUrls => {
-        this.items.push(this.createGalleryItem(category, imageUrls))
-      })
-    })
-  }
-
   private loadImages(): void {
     const joinedRequest$ = this.visibleCategories.map(category => this.imageService.getImageUrlsByCategory(category, 4, 600));
 
     forkJoin(joinedRequest$).pipe(
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(categories => {
-      categories.forEach((imageUrls, i) => {
-        this.items.push(this.createGalleryItem(this.visibleCategories[i], imageUrls));
-      })
-    })
+      const items = categories.reduce((acc, imageUrls, i) => {
+        acc.push(this.createGalleryItem(this.visibleCategories[i], imageUrls));
+        return acc;
+      }, [] as GalleryItem[]);
+      this.items.set(items);
+    });
   }
 
   private createGalleryItem(category: PhotoCategory, examples: AppImage[]): GalleryItem {

@@ -24,7 +24,10 @@
   @for (imageGroup of recentImages(); track $index) {
     <div class="px-3">
       @for (image of imageGroup; track image.publicId) {
-        <app-recent-image-card [image]="image" class="mb-6"></app-recent-image-card>
+        <app-recent-image-card
+          [image]="image"
+          class="mb-6"
+          (click)="showInLightBox(image)"></app-recent-image-card>
       }
     </div>
   }

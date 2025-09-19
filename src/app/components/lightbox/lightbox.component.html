@@ -1,1 +1,14 @@
-<p>lightbox works!</p>
+<div [ngClass]="!activeImage() ? 'invisible' : ''"
+     class="h-screen w-full bg-black/80 fixed inset-0 z-20 flex justify-center items-center"
+     (click)="closeLightBox()"
+>
+  @if (activeImage()) {
+    <img
+      class="w-[95%] max-h-[95vh] object-contain"
+      [src]="activeImage()?.urlSmall"
+      [imgSrc]="activeImage()?.urlOriginal ?? ''"
+      alt="{{ activeImage()?.categories?.[0] ?? ''  }} photography example"
+      (click)="$event.stopPropagation(); showNext()"
+    >
+  }
+</div>
