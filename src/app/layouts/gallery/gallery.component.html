@@ -13,12 +13,12 @@
           <p>{{ item.description }}</p>
           <button class="mt-6 bg-blue-500 text-white px-4 py-2 rounded-md">Show more</button>
         </div>
-        <div class="md:5/12 grow relative flex flex-wrap mx-4 md:m-0">
+        <div class="md:5/12 grow relative mx-4 md:m-0">
           @for (image of item.examples; track image.publicId) {
             <img [src]="image.urlSmall"
-                 class="border-6 md:border-10 border-solid border-white cursor-pointer hover:z-5 hover:scale-110 transition-transform"
+                 class="inline-block border-6 md:border-10 border-solid border-white cursor-pointer hover:z-5 hover:scale-110 transition-transform"
                  [ngClass]="previewClassConfigs[$index]"
-                 alt="'photo example for ' {{ image.categories[0] }}">
+                 alt="{{ image.categories[0] }} photography example">
           }
         </div>
       </div>

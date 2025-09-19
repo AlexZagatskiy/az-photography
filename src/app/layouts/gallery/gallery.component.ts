@@ -3,6 +3,7 @@ import { ImageService } from "../../services/image.service";
 import { NgClass } from "@angular/common";
 import { AppImage, GalleryItem, PhotoCategory } from "../../app.models";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-gallery',
@@ -55,12 +56,24 @@ export class GalleryComponent {
     this.loadImages();
   }
 
-  private loadImages(): void {
+  private loadImagesOld(): void {
     this.visibleCategories.forEach(category => {
       this.imageService.getImageUrlsByCategory(category, 4, 600).pipe(
         takeUntilDestroyed(this.destroyRef)
       ).subscribe(imageUrls => {
         this.items.push(this.createGalleryItem(category, imageUrls))
+      })
+    })
+  }
+
+  private loadImages(): void {
+    const joinedRequest$ = this.visibleCategories.map(category => this.imageService.getImageUrlsByCategory(category, 4, 600));
+
+    forkJoin(joinedRequest$).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(categories => {
+      categories.forEach((imageUrls, i) => {
+        this.items.push(this.createGalleryItem(this.visibleCategories[i], imageUrls));
       })
     })
   }
