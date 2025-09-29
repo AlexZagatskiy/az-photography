@@ -35,15 +35,25 @@ export class LightboxService {
   }
 
   public setImageList(imageList: AppImage[]): void {
-      this._imageList.set(imageList);
+    this._imageList.set(imageList);
   }
 
   public showNext(): void {
-      this._activeImageIndex.update(i => ++i! );
+    this._activeImageIndex.update(i => {
+      const newIndex = ++i!;
+      return newIndex < this._imageList().length ? newIndex : 0;
+    });
+  }
+
+  public showPrevious(): void {
+    this._activeImageIndex.update(i => {
+      const newIndex = --i!;
+      return newIndex >= 0 ? newIndex : this._imageList().length - 1;
+    });
   }
 
   public closeLightBox(): void {
-      this._activeImageIndex.set(null);
+    this._activeImageIndex.set(null);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, inject, input, OnInit } from "@angular/core";
+import { Directive, effect, ElementRef, inject, input } from "@angular/core";
 
 @Directive({
   selector: "[imgSrc]",

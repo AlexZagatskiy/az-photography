@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { ContactFormComponent } from "../../components/contact-form/contact-form.component";
-import { ImageSrcDirective } from "../../directives/imageSrc";
+import { ImageSrcDirective } from "../../directives/image-src";
 import { ContactApiService } from "../../services/contact-api.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { BehaviorSubject, catchError, map, Subject, tap } from "rxjs";

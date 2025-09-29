@@ -12,7 +12,7 @@ import { ImageService } from "../../services/image.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { RecentImageCardComponent } from "../../components/recent-image-card/recent-image-card.component";
 import { AppImage, AppImageMeasured, Language } from "../../app.models";
-import { ImageSrcDirective } from "../../directives/imageSrc";
+import { ImageSrcDirective } from "../../directives/image-src";
 import {
   combineLatest,
   debounceTime,

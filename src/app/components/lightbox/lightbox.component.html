@@ -6,9 +6,18 @@
     <img
       class="w-[95%] max-h-[95vh] object-contain"
       [src]="activeImage()?.urlSmall"
+      gestures
+      keyboardNavigation
       [imgSrc]="activeImage()?.urlOriginal ?? ''"
       alt="{{ activeImage()?.categories?.[0] ?? ''  }} photography example"
-      (click)="$event.stopPropagation(); showNext()"
+      (click)="$event.stopPropagation();"
+      (swipeLeft)="showPrevious()"
+      (swipeRight)="showNext()"
+      (swipeTop)="closeLightBox()"
+      (swipeBottom)="closeLightBox()"
+      (arrowLeft)="showPrevious()"
+      (arrowRight)="showNext()"
+      (escape)="closeLightBox()"
     >
   }
 </div>
