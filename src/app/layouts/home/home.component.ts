@@ -11,7 +11,7 @@ import {
 import { ImageService } from "../../services/image.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { RecentImageCardComponent } from "../../components/recent-image-card/recent-image-card.component";
-import { AppImage, AppImageMeasured, Language } from "../../app.models";
+import { AppImage, AppImageMeasured, Language, PhotoCategory } from "../../app.models";
 import { ImageSrcDirective } from "../../directives/image-src";
 import {
   combineLatest,
@@ -155,5 +155,9 @@ export class HomeComponent {
 
   protected showInLightBox(image: AppImage): void {
     this.lightboxService.setActiveImage(image);
+  }
+
+  protected navigateToCategory(category: PhotoCategory): void {
+    console.log('TODO: navigateToCategory', category)
   }
 }

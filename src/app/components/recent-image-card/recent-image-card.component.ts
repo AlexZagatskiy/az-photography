@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input } from '@angular/core';
-import { AppImage  } from "../../app.models";
+import { ChangeDetectionStrategy, Component, HostBinding, input, output } from '@angular/core';
+import { AppImage, PhotoCategory } from "../../app.models";
 
 @Component({
   selector: 'app-recent-image-card',
@@ -13,5 +13,7 @@ import { AppImage  } from "../../app.models";
 export class RecentImageCardComponent {
   @HostBinding('class') hostClasses = 'block rounded-xl overflow-hidden';
 
-  public image = input.required<AppImage>()
+  public image = input.required<AppImage>();
+  public showInLightBox = output<void>();
+  public navigateToCategory = output<PhotoCategory>();
 }

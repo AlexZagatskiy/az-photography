@@ -27,7 +27,9 @@
         <app-recent-image-card
           [image]="image"
           class="mb-6"
-          (click)="showInLightBox(image)"></app-recent-image-card>
+          (showInLightBox)="showInLightBox(image)"
+          (navigateToCategory)="navigateToCategory($event)"
+        ></app-recent-image-card>
       }
     </div>
   }
