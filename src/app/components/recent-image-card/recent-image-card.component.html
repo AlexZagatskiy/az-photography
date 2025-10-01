@@ -1,10 +1,15 @@
-<button class="relative group">
+<button class="relative group"
+        (click)="toggleOverlay()"
+        (mouseenter)="isActive.set(true)"
+        (mouseleave)="isActive.set(false)"
+>
   <img [src]="image().urlSmall"
        class="block w-full"
        alt="{{ image().categories[0] }} photography example">
 
   <div
-    class="absolute inset-0 flex flex-col invisible group-hover:visible group-hover:opacity-100 bg-black/80 opacity-0 justify-center items-center text-blue-500">
+    [ngClass]="isActive() ? 'visible opacity-100' : ''"
+    class="absolute inset-0 flex flex-col invisible bg-black/80 opacity-0 justify-center items-center text-blue-500">
     <button class="cursor-pointer hover:opacity-70"
             (click)="showInLightBox.emit()">
       <svg class="size-10" x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor">
@@ -14,13 +19,13 @@
 	L418.9,372.4z"/>
       </svg>
     </button>
-<!--    TODO: enable after category page implementation-->
-<!--    <div class="p-4">-->
-<!--      @for (category of image().categories; track category) {-->
-<!--        <button class="hover:underline cursor-pointer"-->
-<!--                (click)="navigateToCategory.emit(category)">#{{ category }}-->
-<!--        </button>-->
-<!--      }-->
-<!--    </div>-->
+    <!--    TODO: enable after category page implementation-->
+    <!--    <div class="p-4">-->
+    <!--      @for (category of image().categories; track category) {-->
+    <!--        <button class="hover:underline cursor-pointer"-->
+    <!--                (click)="navigateToCategory.emit(category)">#{{ category }}-->
+    <!--        </button>-->
+    <!--      }-->
+    <!--    </div>-->
   </div>
 </button>
