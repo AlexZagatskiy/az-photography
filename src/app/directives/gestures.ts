@@ -18,6 +18,8 @@ export class GesturesDirective  {
 
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
     this.startX = event.touches[0].clientX;
     this.startY = event.touches[0].clientY;
     this.startTime = Date.now();
